@@ -42,6 +42,8 @@ end
  group :test do
   # Browser simulator used for integration testing
   gem "capybara", "~> 2.4"
+  # Factories create new objects for our tests
+  gem "factory_girl_rails", "~> 4.5"
 end
 
 group :development do
