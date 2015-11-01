@@ -12,11 +12,11 @@
         method: :delete,
         data: { confirm: 'Are you sure you want to delete this project?' },
         class: 'delete')
-    %>
-  </ul>
+      %>
+    </ul>
 </header>
 
-<p><%= @project.description %></p>
+  <p><%= @project.description %></p>
 
 <header>
   <h2>Tickets</h2>
@@ -26,3 +26,11 @@
             class: "new" %></li>
   </ul>
 </header>
+
+<ul id="tickets">
+  <% @project.tickets.each do |ticket| %>
+  <li>
+    #<%= ticket.id %> - <%= link_to ticket.name, [@project, ticket] %>
+  </li>
+  <% end %>
+</ul>
