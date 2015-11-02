@@ -50,4 +50,8 @@ RSpec.configure do |config|
 
   # Excluding the /gems/ pattern from the otherwise chatty backtrace.
   config.backtrace_exclusion_patterns << /gems/
+
+  # Including `login_as` method in our feature tests
+  config.include Warden::Test::Helpers, type: :feature
+  config.after(type: :feature) { Warden.test_reset! }
 end
