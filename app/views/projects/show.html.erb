@@ -8,7 +8,7 @@
         class: 'edit') %>
 
     <%= link_to("Delete Project",
-        project_path(@project),
+        admin_project_path(@project),
         method: :delete,
         data: { confirm: 'Are you sure you want to delete this project?' },
         class: 'delete')
