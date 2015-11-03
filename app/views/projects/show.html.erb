@@ -3,16 +3,17 @@
   <h1><%= @project.name %></h1>
 
   <ul class="actions">
-    <%= link_to("Edit Project",
+    <li><%= link_to("Edit Project",
         edit_project_path(@project),
-        class: 'edit') %>
+        class: 'edit') %></li>
 
-    <%= link_to("Delete Project",
-        admin_project_path(@project),
-        method: :delete,
-        data: { confirm: 'Are you sure you want to delete this project?' },
-        class: 'delete')
-      %>
+    <% admins_only do %>
+      <li><%= link_to("Delete Project",
+          admin_project_path(@project),
+          method: :delete,
+          data: { confirm: 'Are you sure you want to delete this project?' },
+          class: 'delete') %></li>
+    <% end %>
     </ul>
 </header>
 
