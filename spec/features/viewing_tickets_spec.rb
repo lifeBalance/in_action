@@ -4,8 +4,10 @@ RSpec.feature 'Users can view tickets' do
   before do
     # Create an author-user
     author = FactoryGirl.create(:user)
+    
     # Create one project and a nested ticket
     sublime = FactoryGirl.create(:project, name: 'Sublime Text 3')
+    assign_role!(author, :viewer, sublime)
     FactoryGirl.create(:ticket,
       project: sublime,
       author: author,
@@ -14,11 +16,13 @@ RSpec.feature 'Users can view tickets' do
 
     # Create another project and a nested ticket
     ie = FactoryGirl.create(:project, name: 'Internet Explorer')
+    assign_role!(author, :viewer, ie)
     FactoryGirl.create(:ticket,
       project: ie,
       name: 'Standards compliance',
       description: "Isn't a joke.")
 
+    login_as(author)
     visit '/'
   end
 
