@@ -8,7 +8,7 @@
           edit_project_path(@project),
           class: 'edit') %></li>
     <% end %>
-    
+
     <% admins_only do %>
       <li><%= link_to("Delete Project",
           admin_project_path(@project),
@@ -24,9 +24,12 @@
 <header>
   <h2>Tickets</h2>
   <ul class="actions">
-    <li><%= link_to "New Ticket",
-            new_project_ticket_path(@project),
-            class: "new" %></li>
+    <% if policy(Ticket.new(project: @project)).create? %>
+      <li><%= link_to "New Ticket",
+              new_project_ticket_path(@project),
+              class: "new" %>
+      </li>
+    <% end %>
   </ul>
 </header>
 
