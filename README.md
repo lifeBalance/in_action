@@ -37,6 +37,7 @@ Now things start to get interesting with the introduction of **nested resources*
 
 ## Chapter 8
 1. Creating a `Role` model. Each record of the corresponding database table for this model, contains the role that a given user has on a specific project:
+
 * Viewer: Read a specific project object.
 * Editor: Same as above plus creating and updating ticket objects on a given project.
 * Manager: Same as above plus editing project details.
