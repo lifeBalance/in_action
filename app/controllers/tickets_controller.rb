@@ -43,7 +43,7 @@ class TicketsController < ApplicationController
 
   def destroy
     authorize @ticket, :destroy?
-    
+
     @ticket.destroy
     flash[:notice] = 'Ticket has been deleted.'
 
@@ -60,6 +60,6 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-      params.require(:ticket).permit(:name, :description)
+      params.require(:ticket).permit(:name, :description, :attachment)
     end
 end

@@ -6,4 +6,7 @@ class Ticket < ActiveRecord::Base
   # Validations
   validates :name, presence: true
   validates :description, presence: true, length: { minimum: 10 }
+
+  # CarrierWave
+  mount_uploader :attachment, AttachmentUploader
 end

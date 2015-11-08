@@ -34,8 +34,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Authentication
 gem "devise", "~> 3.4.1"
+
 # Authorization
 gem "pundit", "~> 0.3.0"
+
+# Uploading files
+gem "carrierwave", "~> 0.10.0"
 
 # Use Unicorn as the app server
 # gem 'unicorn'
