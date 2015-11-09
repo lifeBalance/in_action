@@ -43,9 +43,15 @@ Now things start to get interesting with the introduction of **nested resources*
 * Manager: Same as above plus editing project details.
 
 2. Implementing a **whitelist authorization** system.
-3. Use of the [Pundit gem][9]
+3. Use of the [Pundit gem][13]
 4. During the whole chapter plenty of **feature tests** are written or previous tests are modified to check the permissions that restrict access to the CRUD actions on the `ProjectsController` and `TicketsController`. These permissions are granted by `Role` objects.
 5. Finally, we implement the functionality that allow admins to assign roles to users.
+
+## Chapter 9
+This chapter is mostly about file uploading using the [carrierwave gem][14], but it teaches other useful things like:
+
+* Removing the [turbolinks gem][15] from our application.
+* Small introduction to [CoffeeScript][16] using a small script for helping when adding fields for uploading files.
 
 
 
@@ -61,4 +67,7 @@ Now things start to get interesting with the introduction of **nested resources*
 [10]: https://github.com/thoughtbot/factory_girl/tree/master
 [11]: https://github.com/twbs/bootstrap-sass
 [12]: http://simple-form.plataformatec.com.br/
-[99]: https://github.com/elabs/pundit
+[13]: https://github.com/elabs/pundit
+[14]: https://github.com/carrierwaveuploader/carrierwave
+[15]: https://github.com/rails/turbolinks
+[16]: http://coffeescript.org/
