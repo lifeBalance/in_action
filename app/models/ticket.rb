@@ -4,6 +4,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :author, class_name: 'User'
   has_many :attachments, dependent: :destroy
   accepts_nested_attributes_for :attachments, reject_if: :all_blank
+  has_many :comments, dependent: :destroy
 
   # Validations
   validates :name, presence: true
