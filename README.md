@@ -53,7 +53,8 @@ This chapter is mostly about file uploading using the [carrierwave gem][14], but
 * Removing the [turbolinks gem][15] from our application.
 * Small introduction to [CoffeeScript][16] using a small script for helping when adding fields for uploading files.
 
-
+## Chapter 10
+In this part of the book we develop a feature for adding information about the state of a ticket. This is done using a select field in the comments.
 
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development
