@@ -56,6 +56,10 @@ This chapter is mostly about file uploading using the [carrierwave gem][14], but
 ## Chapter 10
 In this part of the book we develop a feature for adding information about the state of a ticket. This is done using a select field in the comments.
 
+We also implement the functionality that allows admins to add new states to the list, so users have more options to choose from. Admins also can rename, remove and set a default state so new tickets are never born stateless.
+
+As usual the work start writing a BDD feature to describe the process of creating a state, and as always we walk our way to the final implementation by writing the minimal amount of code necessary to fix the spec failures.
+
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development
 [3]: https://en.wikipedia.org/wiki/Test-driven_development
