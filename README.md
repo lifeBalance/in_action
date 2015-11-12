@@ -58,7 +58,9 @@ In this part of the book we develop a feature for adding information about the s
 
 We also implement the functionality that allows admins to add new states to the list, so users have more options to choose from. Admins also can rename, remove and set a default state so new tickets are never born stateless.
 
-As usual the work start writing a BDD feature to describe the process of creating a state, and as always we walk our way to the final implementation by writing the minimal amount of code necessary to fix the spec failures.
+As usual the work start writing a BDD feature to describe the process of **creating a state**, and as always we walk our way to the final implementation by writing the minimal amount of code necessary to fix the spec failures.
+
+The same procedure described above is followed for defining a method that allows setting a **default state** for tickets. With that method in place we just have to call that method every time a new ticket is created, and a **callback** in the `Ticket` model is perfect for that task, but only after a slight adjustment in the description of our feature for creating tickets.
 
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development

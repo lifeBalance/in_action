@@ -11,4 +11,12 @@ class Ticket < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true, length: { minimum: 10 }
 
+  # Callbacks
+  before_create :assign_default_state
+
+  private
+    def assign_default_state
+      self.state ||= State.default
+    end
+
 end
