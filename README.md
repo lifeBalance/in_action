@@ -1,7 +1,7 @@
 # Ticketee
-**Ticketee** is the ticket-tracking application that the [Rails 4 In Action][1] book uses to teach a lot of awesome stuff. What I'm liking the most about this app, is that is being developed using [BDD][2] best practices.
+**Ticketee** is a ticket-tracking application à la [lighthouse][https://lighthouseapp.com/]. The [Rails 4 In Action][1] book uses this app as a vehicle to teach about building Rails apps following a professional approach according to [BDD][2] best practices.
 
-I'm really enjoying this book, which I consider to be one of the best resources for learning Rails 4.
+> I'm really enjoying this book, which I(and a lot more people) consider to be one of the best resources for learning Rails 4.
 
 Some of the stuff covered by the book:
 
@@ -69,6 +69,7 @@ Finally we implement functionality to avoid little rascals from tampering with o
 ## Chapter 11
 This chapter covers tagging tickets, meaning the ability to add **tags** to tickets so we can group them together under a given tag. Then we can use these tags to implement a search functionality based on them. Creating and editing tags is not gonna be allowed to all users, only **managers** of a project and **admins** will be able to do that.
 
+### Creating tags
 Creating tags is the first step, we need an interface for adding tags to new tickets, a simple **text field** underneath the ticket's description field. But before that, we need to add a new scenario to the spec for creating tickets. The steps taken to fix the failing spec:
 
 * Create the text field itself for creating the tags in `views/tickets/_form.html.erb`.
@@ -80,15 +81,30 @@ Creating tags is the first step, we need an interface for adding tags to new tic
 * Redefine the **setter method** for our virtual attribute `tag_names=` in the `Ticket` model.
 * Creating a **partial template** for tags in `views/tags/_tag.html.erb` and add some styling.
 
+### Adding more tags
 Apart from adding tags upon ticket creation, every time we write a **comment** we should also be able of adding tags to an already existing ticket. For that we are gonna need to add another text field to our comment's form, but before that, as usual, we have to add a new scenario to our feature spec for creating comments. To fix the red spec we do:
 
 * Create a partial in `views/tags/_form.html.erb`, which we render from both:
-
   * `views/tickets/_form.html.erb`
   * `views/comments/_form.html.erb`
 * Define a `tag_names` virtual attribute in the `Comment` model too.
 * Add this attribute to the list of permitted parameters in `CommentsController`.
 * Add an `after_create` callback inside the `Comment` model, to the `associate_tags_with_ticket` method, and define the method itself.
+
+### Restricting tag creation
+In **Ticketee** we want to restrict the privilege of adding tags to **managers** of a project and **admins**, which thanks to the roles and authorization systems we have in place, it's gonna be a piece of cake to implement. This restriction is gonna be added to the `CommentsController`, naturally after a new context to the already existing `comments_controller_spec.rb`. As always we start **red**, but let's allow the failing spec to guide our steps:
+
+* We are gonna create a new method called `sanitized_parameters` among the `private` methods of the `CommentsController`. The purpose of this method is to clean up the clutter in the `create` action.
+* Next we define the `tag?` method in our `policies/ticket_policy.rb`. Optionally, we could add more specs to our `ticket_policy_spec.rb` to test the new method.
+
+We should take care too of controlling **tagging** operations when a ticket is being created. Starting with a spec in our `tickets_controller_spec.rb` and upon failing we start implementing:
+
+* Here we need to do the same we did for our comments controller, we have to sanitize the parameters passed to the `build` method inside the `create` action. This way the spec will pass.
+
+Now we have to hide the tag field in the comments form for users that are not authorized to tag. That will break our `creating_tickets_spec.rb:91`. To fix it:
+* Go to the `before` block of the spec and change the role assigned to `manager`, that will do.
+
+That should be all regarding tagging restrictions.
 
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development

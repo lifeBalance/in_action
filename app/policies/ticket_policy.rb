@@ -25,4 +25,8 @@ class TicketPolicy < ApplicationPolicy
   def change_state?
     destroy? # If the user can destroy tickets, she can also change their states.
   end
+
+  def tag?
+    destroy? # If the user can destroy tickets, she can also add tags.
+  end
 end
