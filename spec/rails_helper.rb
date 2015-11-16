@@ -55,4 +55,7 @@ RSpec.configure do |config|
   # Including `login_as` method in our feature tests
   config.include Warden::Test::Helpers, type: :feature
   config.after(type: :feature) { Warden.test_reset! }
+
+  # Devise’s test helpers include methods such as `sign_in`
+  config.include Devise::TestHelpers, type: :controller
 end

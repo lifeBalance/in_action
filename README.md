@@ -64,6 +64,8 @@ The same procedure described above is followed for defining a method that allows
 
 Then we write another spec for the following requirement: **Editors** of a project should be able to leave comments but not change a ticket’s state; only **managers** of a project (and **admins**) can change the state.
 
+Finally we implement functionality to avoid little rascals from tampering with our forms and changing tickets' states. We do that by modifying the `create` action in our `CommentsController` so that the `state_id` parameter is removed before being passed to the `build` method, for all users other than **managers** and **admins**. As usual, the actual implementation is preceded by a spec feature.
+
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development
 [3]: https://en.wikipedia.org/wiki/Test-driven_development
