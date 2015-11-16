@@ -64,7 +64,21 @@ The same procedure described above is followed for defining a method that allows
 
 Then we write another spec for the following requirement: **Editors** of a project should be able to leave comments but not change a ticket’s state; only **managers** of a project (and **admins**) can change the state.
 
-Finally we implement functionality to avoid little rascals from tampering with our forms and changing tickets' states. We do that by modifying the `create` action in our `CommentsController` so that the `state_id` parameter is removed before being passed to the `build` method, for all users other than **managers** and **admins**. As usual, the actual implementation is preceded by a spec feature.
+Finally we implement functionality to avoid little rascals from tampering with our forms and changing a ticket state. We do that by modifying the `create` action in our `CommentsController` so that the `state_id` parameter is removed before being passed to the `build` method, for all users other than **managers** and **admins**. As usual, the actual implementation is preceded by a spec feature.
+
+## Chapter 11
+This chapter covers tagging tickets, meaning the ability to add **tags** to tickets so we can group them together under a given tag. Then we can use these tags to implement a search functionality based on them. Creating and editing tags is not gonna be allowed to all users, only **managers** of a project and **admins** will be able to do that.
+
+Creating tags is the first step, we need an interface for adding tags to new tickets, a simple **text field** underneath the ticket's description field. But before that, we need to add a new scenario to the spec for creating tickets. The steps taken to fix the failing spec:
+
+* Create the text field itself for creating the tags in `views/tickets/_form.html.erb`.
+* Creating a **virtual attribute** named `tag_names` inside the `Ticket` model.
+* Add this attribute to the list of permitted parameters in `TicketsController`.
+* Add markup for showing the tags in `views/tickets/show.html.erb`.
+* Define the `tags` method with a `has_and_belongs_to_many` association between `Ticket` objects and `Tag` objects.
+* Generate a `Tag` model with only a `name` field, and without any `timestamps` fields, we don't need them. Before running that migration, we generate another one for the **join table** for tags and tickets.
+* Redefine the **setter method** for our virtual attribute `tag_names=` in the `Ticket` model.
+* Creating a **partial template** for tags in `views/tags/_tag.html.erb` and add some styling.
 
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development

@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  # Callbacks
   before_action :set_project
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
@@ -64,6 +65,7 @@ class TicketsController < ApplicationController
     def ticket_params
       params.require(:ticket).permit( :name,
                                       :description,
+                                      :tag_names,
                                       attachments_attributes: [:file, :file_cache])
     end
 end
