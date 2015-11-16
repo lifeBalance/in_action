@@ -80,6 +80,16 @@ Creating tags is the first step, we need an interface for adding tags to new tic
 * Redefine the **setter method** for our virtual attribute `tag_names=` in the `Ticket` model.
 * Creating a **partial template** for tags in `views/tags/_tag.html.erb` and add some styling.
 
+Apart from adding tags upon ticket creation, every time we write a **comment** we should also be able of adding tags to an already existing ticket. For that we are gonna need to add another text field to our comment's form, but before that, as usual, we have to add a new scenario to our feature spec for creating comments. To fix the red spec we do:
+
+* Create a partial in `views/tags/_form.html.erb`, which we render from both:
+
+  * `views/tickets/_form.html.erb`
+  * `views/comments/_form.html.erb`
+* Define a `tag_names` virtual attribute in the `Comment` model too.
+* Add this attribute to the list of permitted parameters in `CommentsController`.
+* Add an `after_create` callback inside the `Comment` model, to the `associate_tags_with_ticket` method, and define the method itself.
+
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development
 [3]: https://en.wikipedia.org/wiki/Test-driven_development
