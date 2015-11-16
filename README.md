@@ -62,6 +62,8 @@ As usual the work start writing a BDD feature to describe the process of **creat
 
 The same procedure described above is followed for defining a method that allows setting a **default state** for tickets. With that method in place we just have to call that method every time a new ticket is created, and a **callback** in the `Ticket` model is perfect for that task, but only after a slight adjustment in the description of our feature for creating tickets.
 
+Then we write another spec for the following requirement: **Editors** of a project should be able to leave comments but not change a ticket’s state; only **managers** of a project (and **admins**) can change the state.
+
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development
 [3]: https://en.wikipedia.org/wiki/Test-driven_development
