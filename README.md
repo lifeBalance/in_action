@@ -106,6 +106,20 @@ Now we have to hide the tag field in the comments form for users that are not au
 
 That should be all regarding tagging restrictions.
 
+### Deleting tags
+To allow users delete tags, we're gonna add an "x" to each tag so when it's clicked the tag will dissapear and using JavaScript we'll make an asynchronous request to the `destroy` action in the controller.
+
+Spec'ing a feature should be the first step, and seeing how it fails at first the next one. The steps to turn it green are:
+
+* First order or business is implementing the `tag` method used in the feature. This is a **Capybara finder** method used to locate a given html element using its class. We'll put it in `pec/support/ capybara_finders.rb`.
+* Then, in the `_tag.html.erb` partial we have to create the link inside the tag that triggers the asynchronous request to the `remove` action in the `TagsController`(which doesn't exist yet). This link will only show to users able of creating tags. Adding a `remote: true` option makes the link make an asynchronous request once it's clicked.
+* In order to make the link above work, we have to pass it a `@ticket` variable from the `tickets/show.html.erb` view.
+* Next, we'll define a route to the `remove` action of the `TagsController`.
+* And obviously we have to generate the `TagsController` itself, and inside it the `remove` action.
+* Lastly, once we remove the tag from the ticket in the backend, we need to make disappear the tag element from the page. To do that we'll use a small CoffeeScript that will remove the tag only after a successful response from the asynchronous request.
+
+That's all regarding the deleting tags feature.
+
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development
 [3]: https://en.wikipedia.org/wiki/Test-driven_development
