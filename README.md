@@ -1,7 +1,7 @@
 # Ticketee
-**Ticketee** is a ticket-tracking application à la [lighthouse][https://lighthouseapp.com/]. The [Rails 4 In Action][1] book uses this app as a vehicle to teach about building Rails apps following a professional approach according to [BDD][2] best practices.
+**Ticketee** is a ticket-tracking application à la [lighthouse](https://lighthouseapp.com/). The [Rails 4 In Action][1] book uses this app as a vehicle to teach about building Rails apps following a professional approach according to [BDD][2] best practices.
 
-> I'm really enjoying this book, which I(and a lot more people) consider to be one of the best resources for learning Rails 4.
+> You know these books that look very serious and professional, they promise a lot but after a few pages you end up pulling your hair while following building the project? Well, this is **not** that kind of book. If something is not working, check your code and compare with the book, you can be sure you've done something wrong. I'm really enjoying [Rails 4 In Action][1], which I(and a lot more people) consider to be one of the best resources for learning Rails 4.
 
 Some of the stuff covered by the book:
 
