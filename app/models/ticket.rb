@@ -21,6 +21,7 @@ class Ticket < ActiveRecord::Base
   # Class method provided by the Searcher gem
   searcher do
     label :tag, from: :tags, field: "name"
+    label :state, from: :state, field: "name"
   end
 
   def tag_names=(names)

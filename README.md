@@ -133,6 +133,14 @@ Another feature of **Ticketee** is finding tickets by tags. We start our work on
 
 The feature spec should be passing now. Remember to specify search queries using the syntax `tag:ticket`.
 
+### Searching by state
+In this section we implement a feature that allows us to search tickets by **state**, meaning tickets that are open, closed, etc. Before anything else, we write a spec for the feature, which at first will be red, but we'll turn it green following the next steps:
+
+* Enabling searching on states in the `searcher` class method (inside the `Ticket` model). We just have to add: `label :state, from: :state, field: "name"` to the body of the method.
+
+That should be enough for getting our spec to pass. Now we can query our `Ticket` model asking it for tickets with a given state, even using chained queries such as `tag:ticket state:open`.
+
+
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development
 [3]: https://en.wikipedia.org/wiki/Test-driven_development
