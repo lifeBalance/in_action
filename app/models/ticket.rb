@@ -18,6 +18,11 @@ class Ticket < ActiveRecord::Base
   # Callbacks
   before_create :assign_default_state
 
+  # Class method provided by the Searcher gem
+  searcher do
+    label :tag, from: :tags, field: "name"
+  end
+
   def tag_names=(names)
     @tag_names = names
     names.split.each do |name|

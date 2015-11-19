@@ -107,7 +107,7 @@ Now we have to hide the tag field in the comments form for users that are not au
 That should be all regarding tagging restrictions.
 
 ### Deleting tags
-To allow users delete tags, we're gonna add an "x" to each tag so when it's clicked the tag will dissapear and using JavaScript we'll make an asynchronous request to the `destroy` action in the controller.
+To allow users delete tags, we're gonna add an "x" to each tag so when it's clicked the tag will disappear and using JavaScript we'll make an asynchronous request to the `destroy` action in the controller.
 
 Spec'ing a feature should be the first step, and seeing how it fails at first the next one. The steps to turn it green are:
 
@@ -119,6 +119,19 @@ Spec'ing a feature should be the first step, and seeing how it fails at first th
 * Lastly, once we remove the tag from the ticket in the backend, we need to make disappear the tag element from the page. To do that we'll use a small CoffeeScript that will remove the tag only after a successful response from the asynchronous request.
 
 That's all regarding the deleting tags feature.
+
+### Searching tags
+Another feature of **Ticketee** is finding tickets by tags. We start our work on this feature writing a spec that naturally fails at the beginning but that it will turn green after:
+
+* Adding a search field in the `views/projects/show.html.erb` partial, as well as some styling in `responsive.scss`.
+* Adding a route for the path `search_project_tickets_path` used in the partial. This route defines an endpoint to the `search` method in `TicketsController`.
+* Defining the `search` method itself in `TicketsController`.
+* Modify the `projects/show.html.erb` template. This will break the `show` action of the `ProjectsController`. Run `viewing_tickets_spec.rb` to see it. To fix it:
+  * Define a `@tickets` variable inside the `show` action of `projects_controller.rb`(underneath the `authorize` call)
+* Put a render call to the `projects/show.html.erb` template from the `search` action in `TicketsController`.
+* Finally, add the [searcher][17] gem to the `Gemfile`, and use its `searcher` class method in the `Ticket` model.
+
+The feature spec should be passing now. Remember to specify search queries using the syntax `tag:ticket`.
 
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development
@@ -136,3 +149,4 @@ That's all regarding the deleting tags feature.
 [14]: https://github.com/carrierwaveuploader/carrierwave
 [15]: https://github.com/rails/turbolinks
 [16]: http://coffeescript.org/
+[17]: https://github.com/radar/searcher
