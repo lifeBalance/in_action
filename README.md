@@ -140,6 +140,12 @@ In this section we implement a feature that allows us to search tickets by **sta
 
 That should be enough for getting our spec to pass. Now we can query our `Ticket` model asking it for tickets with a given state, even using chained queries such as `tag:ticket state:open`.
 
+### Searching by clicking tag link
+The final feature in this chapter is about turning all tags into links so when a user clicks on them, she's shown only the tickets for that tag. We start adding a new scenario to the `searching_spec.rb` file. The steps for making it pass:
+
+* Inside the `tags/_tag.html.erb` we need to wrap the tag names inside link tags.
+
+And that should get the spec green.
 
 [1]: https://www.manning.com/books/rails-4-in-action
 [2]: https://en.wikipedia.org/wiki/Behavior-driven_development
